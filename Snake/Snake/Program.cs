@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            Board board = new Board(); 
         }
     }
 }
