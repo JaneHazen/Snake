@@ -21,7 +21,7 @@ namespace Snake
         {
             bool IsGameOver = false;
             bool DidHitWall = false;
-            int GameSpeed = 150;
+            int GameSpeed = 75;
             snake.XPosition = board.Boardwidth / 2;
             snake.YPosition = board.Boardheight / 2;
             Direction direction = Direction.Up; 
@@ -144,7 +144,7 @@ namespace Snake
                             key = snake.XPosition.ToString("00") + snake.YPosition.ToString("00");
                             if (!eaten.ContainsKey(key))
                             {
-                                snake.AddToSnake();
+                                snake.Length++;
                                 eaten.Add(key, true);
                                 Console.SetCursorPosition(snake.XPosition, snake.YPosition);
                                 snake.DrawSnake();
@@ -163,7 +163,7 @@ namespace Snake
 
                 if (DidHitWall)
                 {
-                    Console.WriteLine("Dead.");
+                    Console.WriteLine($"Dead at {snake.Length}");
                 }
             }
         }

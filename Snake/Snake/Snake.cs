@@ -11,15 +11,17 @@ namespace Snake
     {
         public int XPosition;
         public int YPosition;
+        public int Length;
         public string SnakeHead;
-        public char SnakeBody;
+        public string SnakeBody;
 
        public Snake()
         {
             XPosition = 0;
             YPosition = 0;
-            SnakeHead = "囧";
-            SnakeBody = '\u0472';
+            Length = 1;
+            SnakeHead = "0";
+            SnakeBody = "~";
         }
 
         public void DrawSnake()
@@ -30,7 +32,7 @@ namespace Snake
 
         public void AddToSnake()
         {
-            SnakeHead += SnakeBody.ToString();
+            SnakeHead += SnakeBody;
         }
     }
 }

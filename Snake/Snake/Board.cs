@@ -21,9 +21,9 @@ namespace Snake
         // Draw the board
         public Board()
         {
-            Boardwidth = 70;
-            Boardheight = 40;
-            BoardComposition = "#";
+            Boardwidth = Console.WindowHeight;
+            Boardheight = Console.WindowWidth;
+            BoardComposition = "X";
         }
 
         public void DrawBoard()
