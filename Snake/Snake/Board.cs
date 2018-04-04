@@ -14,16 +14,16 @@ namespace Snake
         //set up the height and width of the board
         public int Boardwidth { get; private set; }
         public int Boardheight { get; private set; }
-        public static string BoardComposition { get; private set; }
+        public static char BoardComposition { get; private set; }
 
         // initialize the board with a specific height and width
         // set the composition of the board (what will the boarder look like)
         // Draw the board
         public Board()
         {
-            Boardwidth = Console.WindowHeight;
-            Boardheight = Console.WindowWidth;
-            BoardComposition = "X";
+            Boardwidth = Console.WindowWidth;
+            Boardheight = Console.WindowHeight;
+            BoardComposition = 'X';
         }
 
         public void DrawBoard()
@@ -36,30 +36,23 @@ namespace Snake
         public void WriteHorizontalBorders()
         {
             // loop through the boardwidth to make horizontal pounds
-            for(int i = 0; i < Boardwidth; i++)
-            {
-                // Set the cursor to each position on the x axis that is less than the boardwidth and write a #
-                Console.SetCursorPosition(i, 1);
-                Console.Write(BoardComposition);
-                // Set the cursor to each position on the y axis that is less than the boardheight and write a # 
-                Console.SetCursorPosition(i, Boardheight-1);
-                Console.Write(BoardComposition);
-            }
+            string row = new String(BoardComposition, Boardwidth );
+            Console.SetCursorPosition(0, 0);
+            Console.Write(row);
+            Console.SetCursorPosition(0, Boardheight - 2);
+            Console.Write(row);
         }
 
         //Draw vertical border with pound signs
         public void WriteVerticalBorders()
         {
             // loop through the boardheight to make vertical pounds
-            for (int i = 0; i < Boardheight; i++)
+            for (int borderY = 0; borderY < Boardheight - 2; borderY++)
             {
-                // Set the cursor to each position on the y axis that is less than the boardheight and write a #
-                Console.SetCursorPosition(1, i);
-                Console.WriteLine(BoardComposition);
-                // Set the cursor to each position on the x axis that is less than the boardwidth and write a # 
-                Console.SetCursorPosition(Boardwidth-1, i);
-                Console.WriteLine(BoardComposition);
-
+                Console.SetCursorPosition(0, borderY);
+                Console.Write(BoardComposition.ToString());
+                Console.SetCursorPosition(Boardwidth - 1, borderY);
+                Console.Write(BoardComposition.ToString());
             }
         }
 
