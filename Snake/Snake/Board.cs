@@ -12,15 +12,22 @@ namespace Snake
     public class Board
     {
         //set up the height and width of the board
-        public static int Boardwidth;
-        public static int Boardheight;
+        public int Boardwidth { get; private set; }
+        public int Boardheight { get; private set; }
+        public static string BoardComposition { get; private set; }
 
         // initialize the board with a specific height and width
+        // set the composition of the board (what will the boarder look like)
         // Draw the board
         public Board()
         {
             Boardwidth = 70;
             Boardheight = 40;
+            BoardComposition = "#";
+        }
+
+        public void DrawBoard()
+        {
             WriteHorizontalBorders();
             WriteVerticalBorders();
         }
@@ -33,10 +40,10 @@ namespace Snake
             {
                 // Set the cursor to each position on the x axis that is less than the boardwidth and write a #
                 Console.SetCursorPosition(i, 1);
-                Console.Write("#");
+                Console.Write(BoardComposition);
                 // Set the cursor to each position on the y axis that is less than the boardheight and write a # 
                 Console.SetCursorPosition(i, Boardheight-1);
-                Console.Write("#");
+                Console.Write(BoardComposition);
             }
         }
 
@@ -48,10 +55,10 @@ namespace Snake
             {
                 // Set the cursor to each position on the y axis that is less than the boardheight and write a #
                 Console.SetCursorPosition(1, i);
-                Console.WriteLine("#");
+                Console.WriteLine(BoardComposition);
                 // Set the cursor to each position on the x axis that is less than the boardwidth and write a # 
                 Console.SetCursorPosition(Boardwidth-1, i);
-                Console.WriteLine("#");
+                Console.WriteLine(BoardComposition);
 
             }
         }

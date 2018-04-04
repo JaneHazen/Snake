@@ -20,7 +20,6 @@ namespace Snake.Tests
            string actual = str.ToString();
            int actualLength = actual.Length;
 
-
             //assert
             Assert.AreEqual(expectedLength, actualLength);
         }
