@@ -33,27 +33,64 @@ namespace Snake
         }
 
         // Draw the horizontal border with pound signs
+        // Draw the horizontal border with pound signs
+
         public void WriteHorizontalBorders()
+
         {
+
             // loop through the boardwidth to make horizontal pounds
-            string row = new String(BoardComposition, Boardwidth );
-            Console.SetCursorPosition(0, 0);
-            Console.Write(row);
-            Console.SetCursorPosition(0, Boardheight - 2);
-            Console.Write(row);
+
+            for (int i = 1; i < Boardwidth; i++)
+
+            {
+
+                // Set the cursor to each position on the x axis that is less than the boardwidth and write a #
+
+                Console.SetCursorPosition(i, 1);
+
+                Console.Write(BoardComposition);
+
+                // Set the cursor to each position on the y axis that is less than the boardheight and write a # 
+
+                Console.SetCursorPosition(i, Boardheight - 1);
+
+                Console.Write(BoardComposition);
+
+            }
+
         }
 
+
+
         //Draw vertical border with pound signs
+
         public void WriteVerticalBorders()
+
         {
+
             // loop through the boardheight to make vertical pounds
-            for (int borderY = 0; borderY < Boardheight - 2; borderY++)
+
+            for (int i = 0; i < Boardheight; i++)
+
             {
-                Console.SetCursorPosition(0, borderY);
-                Console.Write(BoardComposition.ToString());
-                Console.SetCursorPosition(Boardwidth - 1, borderY);
-                Console.Write(BoardComposition.ToString());
+
+                // Set the cursor to each position on the y axis that is less than the boardheight and write a #
+
+                Console.SetCursorPosition(1, i);
+
+                Console.WriteLine(BoardComposition);
+
+                // Set the cursor to each position on the x axis that is less than the boardwidth and write a # 
+
+                Console.SetCursorPosition(Boardwidth - 1, i);
+
+                Console.WriteLine(BoardComposition);
+
+
+
             }
+
         }
 
     }
