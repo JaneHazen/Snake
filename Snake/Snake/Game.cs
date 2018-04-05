@@ -8,32 +8,25 @@ namespace Snake
 {
     public class Game
     {
-        public enum Direction
-        {
-            Up,
-            Down,
-            Right,
-            Left
-        }
-
-        
         public Game(Snake snake, Board board)
         {
-            bool IsGameOver = false;
-            bool DidHitWall = false;
-            int GameSpeed = 75;
             snake.XPosition = board.Boardwidth / 2;
             snake.YPosition = board.Boardheight / 2;
+            bool DidHitWall = false;
             Direction direction = Direction.Up; 
-            Console.CursorVisible = false;
-            ConsoleKeyInfo command;
             Dictionary<string, bool> eaten = new Dictionary<string, bool>();
+            Console.CursorVisible = false;
+            bool IsGameOver = false;
+            int GameSpeed = 75;
+            ConsoleKeyInfo command;
 
             while (!IsGameOver)
             {
                 Console.Clear();
+                Console.Title = "Use 'a', 's','d', and 'w' to steer. ";
                 board.DrawBoard();
 
+                snake.Length = 1;
                 DidHitWall = false;
                 direction = Direction.Up;
                 eaten.Clear();
@@ -41,7 +34,6 @@ namespace Snake
                 snake.YPosition = board.Boardheight / 2;
                 eaten.Add(snake.XPosition.ToString("00") + snake.YPosition.ToString("00"), true);
 
-                Console.SetCursorPosition(snake.XPosition, snake.YPosition);
                 snake.DrawSnake();
 
                 while (!Console.KeyAvailable)
@@ -64,12 +56,17 @@ namespace Snake
                         case 'd':
                             direction = Direction.Right; 
                             break;
+                        case 'q':
+                            IsGameOver = true;
+                            break;
                     }
 
                 DateTime nextCheck = DateTime.Now.AddMilliseconds(GameSpeed);
 
                 while(!IsGameOver && !DidHitWall)
                 {
+                    Console.Title = "Score: " + snake.Length.ToString();
+
                     while(nextCheck > DateTime.Now)
                     {
                         if (Console.KeyAvailable)
@@ -88,6 +85,9 @@ namespace Snake
                                     break;
                                 case 'd':
                                     direction = Direction.Right;
+                                    break;
+                                case 'q':
+                                    IsGameOver = true;
                                     break;
                             }
                         }
@@ -146,7 +146,6 @@ namespace Snake
                             {
                                 snake.Length++;
                                 eaten.Add(key, true);
-                                Console.SetCursorPosition(snake.XPosition, snake.YPosition);
                                 snake.DrawSnake();
                             }
                             else
@@ -163,7 +162,7 @@ namespace Snake
 
                 if (DidHitWall)
                 {
-                    Console.WriteLine($"Dead at {snake.Length}");
+                    Console.Title = "You Died! Score: " + snake.Length.ToString();
                 }
             }
         }
