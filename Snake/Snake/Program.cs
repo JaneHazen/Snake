@@ -6,19 +6,13 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    public class Program
+    class Program
     {
-   
-        public Snake snake;
-        public Board board;
-        
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            Board board = new Board();
             Snake snake = new Snake();
+            Board board = new Board();
             Game game = new Game(snake, board);
         }
-      
-
     }
 }

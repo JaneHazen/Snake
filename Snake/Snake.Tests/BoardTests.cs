@@ -11,17 +11,7 @@ namespace Snake.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            // arrange
-            StringWriter str = new StringWriter();
-            Console.SetOut(str);
-            int expectedLength = Board.Boardheight * Board.Boardwidth;
 
-            // act
-           string actual = str.ToString();
-           int actualLength = actual.Length;
-
-            //assert
-            Assert.AreEqual(expectedLength, actualLength);
         }
     }
 }

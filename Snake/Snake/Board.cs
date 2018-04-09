@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Snake.Interfaces;
 
 namespace Snake
 {
     /// <summary>
     /// Draw the board to the screen
     /// </summary>
-    public class Board
+    public class Board : IBoard
     {
         //set up the height and width of the board
         public int Boardwidth { get; private set; }
         public int Boardheight { get; private set; }
-        public static char BoardComposition { get; private set; }
+        public char BoardComposition { get; private set; }
 
         // initialize the board with a specific height and width
         // set the composition of the board (what will the boarder look like)
