@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Snake.Interfaces;
+
 
 namespace Snake
 {
-    class Cockroach
+    class Cockroach : ICockroach
     {
-        public int XPosition;
-        public int YPosition;
-        public char Icon = '$';
+        public int XPosition { get; private set; }
+        public int YPosition { get; private set; }
+        public char Icon { get; private set; } 
         public Board board; 
 
         public Cockroach(Board b)
@@ -19,6 +21,7 @@ namespace Snake
             this.board = b; 
             XPosition = random.Next(1, b.Boardwidth-2);
             YPosition = random.Next(1, b.Boardheight - 2);
+            Icon = '$';
         }
 
         public void GenerateNewPosition()
