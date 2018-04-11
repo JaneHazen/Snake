@@ -13,7 +13,7 @@ namespace Snake
         public int XPosition { get; set; }
         public int YPosition { get; set; }
         public int Length { get; set; }
-        public string SnakeHead { get;  set; }
+        public string SnakeHead { get; private set; }
         public string SnakeBody;
 
        public Snake()
