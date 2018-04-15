@@ -12,7 +12,9 @@ namespace Snake
         {
             Snake snake = new Snake();
             Board board = new Board();
-            Game game = new Game(snake, board);
+            Game game = new Game();
+            game.StartGame(snake, board);
+
         }
     }
 }

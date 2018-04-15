@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake.Interfaces
 {
-    interface IBoard
+    public interface IBoard
     {
         /// <summary>
         /// gets board width 

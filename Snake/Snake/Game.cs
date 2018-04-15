@@ -9,21 +9,60 @@ namespace Snake
 {
     public class Game
     {
-        public IInputProvider inputProvider;
-        public IOutputProvider outputProvider;
+        // this holds all of the console input
+        private IInputProvider inputProvider;
+        //this shows everything from the console output
+        private IOutputProvider outputProvider;
+        // this holds the snake instance
+        private ISnake snake;
+        //this holds the board
+        private IBoard board;
+
+        // default constructor
+        public Game() : this(
+                new InputProvider(),
+                new ConsoleOutputProvider(),
+                new Snake(),
+                new Board() )
+        {
+        }
+
+        //this is for testing
+        public Game(
+                IInputProvider inputProvider,
+                IOutputProvider outputProvider,
+                ISnake snake,
+                IBoard board
+            )
+        {
+            this.inputProvider = inputProvider;
+            this.outputProvider = outputProvider;
+            this.snake = snake != null ? snake : null;
+            this.board = board;
+        }
+
+        // customize snake from input provider 
+        private void customizeSnake()
+        {
+            // Ask the user to enter a character to use as the snake
+            outputProvider.WriteLine(Message.Make_A_Character);
+            string snakeHead = inputProvider.Read();
+            Snake snake = new Snake(snakeHead);
+        }
+
 
         public Direction SnakeDirection;
         bool IsGameOver { get; set; }
         bool DidHitWall { get; set; }
         Dictionary<string,bool> Eaten { get; set; }
-        int GameSpeed { get; }
+        int GameSpeed { get; set;  }
             // find the default color of the board
         public ConsoleColor dftForeColor = Console.ForegroundColor;
         public ConsoleColor dftBackColor = Console.BackgroundColor;
 
  
 
-        public Game(Snake snake, Board board)
+        public void StartGame(Snake snake, Board board)
         {
             // set the snake in the middle of the board
             snake.XPosition = board.Boardwidth / 2;
@@ -35,7 +74,7 @@ namespace Snake
             IsGameOver = false;
             DidHitWall = false;
             Eaten = new Dictionary<string, bool>();
-            GameSpeed = 75;
+            int GameSpeed = 75;
             snake.Length = 1;
 
             //do not show the cursor and initialize a variable for key input
@@ -44,9 +83,7 @@ namespace Snake
 
             while (!IsGameOver)
             {
-                // Ask the user to enter a character to use as the snake
-                outputProvider.WriteLine(Message.Make_A_Character);
-                snake.SnakeHead = inputProvider.Read();
+                
                 // clear the console, set the title bar, and draw the board
                 outputProvider.Clear();
                 outputProvider.CreateTitle(Message.Instructions);

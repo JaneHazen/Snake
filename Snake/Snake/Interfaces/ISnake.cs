@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake.Interfaces
 {
-    interface ISnake
+    public interface ISnake
     {
         //gets xposition
         int XPosition { get; set; }
