@@ -41,15 +41,6 @@ namespace Snake
             this.board = board;
         }
 
-        // customize snake from input provider 
-        private void customizeSnake()
-        {
-            // Ask the user to enter a character to use as the snake
-            outputProvider.WriteLine(Message.Make_A_Character);
-            string snakeHead = inputProvider.Read();
-            Snake snake = new Snake(snakeHead);
-        }
-
 
         public Direction SnakeDirection;
         bool IsGameOver { get; set; }
@@ -68,6 +59,7 @@ namespace Snake
             snake.XPosition = board.Boardwidth / 2;
             snake.YPosition = board.Boardheight / 2;
 
+            CustomizeSnake();
 
             // set defaults
             //game is in play, no history of moves, snake length is 1 and game speed is 75
@@ -162,6 +154,15 @@ namespace Snake
                 outputProvider.Write(Message.SnakeArt);
                 JustWait();
             }
+        }
+
+        // customize snake from input provider 
+        private void CustomizeSnake()
+        {
+            // Ask the user to enter a character to use as the snake
+            outputProvider.WriteLine(Message.Make_A_Character);
+            string snakeHead = inputProvider.Read();
+            Snake snake = new Snake(snakeHead);
         }
 
         // wait for player to enter a key
