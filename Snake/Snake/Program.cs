@@ -10,6 +10,11 @@ namespace Snake
     {
         static void Main(string[] args)
         {
+            Snake snake = new Snake();
+            Board board = new Board();
+            Game game = new Game();
+            game.StartGame(snake, board);
+
         }
     }
 }

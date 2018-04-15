@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F362CD77-F73C-4CF1-845D-2FBB39B5A946}</ProjectGuid>
+    <ProjectGuid>{0D4B817D-0120-419F-A169-93BA7A6EFB16}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Snake</RootNamespace>
     <AssemblyName>Snake</AssemblyName>
@@ -42,8 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Board.cs" />
+    <Compile Include="Cockroach.cs" />
+    <Compile Include="ConsoleOutputProvider.cs" />
+    <Compile Include="Direction.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="InputProvider.cs" />
+    <Compile Include="Interfaces\IBoard.cs" />
+    <Compile Include="Interfaces\ICockroach.cs" />
+    <Compile Include="Interfaces\IInputProvider.cs" />
+    <Compile Include="Interfaces\IOutputProvider.cs" />
+    <Compile Include="Interfaces\ISnake.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Snake.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
