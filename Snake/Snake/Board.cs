@@ -12,6 +12,8 @@ namespace Snake
     /// </summary>
     public class Board : IBoard
     {
+        private IOutputProvider outputProvider;
+
         //set up the height and width of the board
         public int Boardwidth { get; private set; }
         public int Boardheight { get; private set; }
@@ -47,16 +49,12 @@ namespace Snake
             {
 
                 // Set the cursor to each position on the x axis that is less than the boardwidth and write a #
-
-                Console.SetCursorPosition(i, 1);
-
-                Console.Write(BoardComposition);
+                outputProvider.SetCursorPosition(i, 1);
+                outputProvider.Write(BoardComposition.ToString());
 
                 // Set the cursor to each position on the y axis that is less than the boardheight and write a # 
-
-                Console.SetCursorPosition(i, Boardheight - 1);
-
-                Console.Write(BoardComposition);
+                outputProvider.SetCursorPosition(i, Boardheight - 1);
+                outputProvider.Write(BoardComposition.ToString());
 
             }
 

@@ -44,11 +44,16 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="Cockroach.cs" />
+    <Compile Include="ConsoleOutputProvider.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="InputProvider.cs" />
     <Compile Include="Interfaces\IBoard.cs" />
     <Compile Include="Interfaces\ICockroach.cs" />
+    <Compile Include="Interfaces\IInputProvider.cs" />
+    <Compile Include="Interfaces\IOutputProvider.cs" />
     <Compile Include="Interfaces\ISnake.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Snake.cs" />

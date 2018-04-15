@@ -3,22 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Snake.Interfaces;
 
 namespace Snake
 {
     public class Game
     {
+        public IInputProvider inputProvider;
+        public IOutputProvider outputProvider;
+
         public Direction SnakeDirection;
         bool IsGameOver { get; set; }
         bool DidHitWall { get; set; }
         Dictionary<string,bool> Eaten { get; set; }
         int GameSpeed { get; }
+            // find the default color of the board
+        public ConsoleColor dftForeColor = Console.ForegroundColor;
+        public ConsoleColor dftBackColor = Console.BackgroundColor;
+
+ 
 
         public Game(Snake snake, Board board)
         {
             // set the snake in the middle of the board
             snake.XPosition = board.Boardwidth / 2;
             snake.YPosition = board.Boardheight / 2;
+
 
             // set defaults
             //game is in play, no history of moves, snake length is 1 and game speed is 75
@@ -35,11 +45,11 @@ namespace Snake
             while (!IsGameOver)
             {
                 // Ask the user to enter a character to use as the snake
-                Console.WriteLine("Hey, write a character to use as a snake");
-                snake.SnakeHead = Console.ReadLine();
+                outputProvider.WriteLine(Message.Make_A_Character);
+                snake.SnakeHead = inputProvider.Read();
                 // clear the console, set the title bar, and draw the board
-                Console.Clear();
-                Console.Title = "Use 'a', 's','d', and 'w' to steer. ";
+                outputProvider.Clear();
+                outputProvider.CreateTitle(Message.Instructions);
                 board.DrawBoard();
 
 
@@ -57,7 +67,7 @@ namespace Snake
                 while(!IsGameOver && !DidHitWall)
                 {
                     //Display the length at the top of the screen 
-                    Console.Title = "Score: " + snake.Length.ToString();
+                    outputProvider.CreateTitle(Message.Score + snake.Length.ToString());
 
                     //wait for the next time you can check for keys 
                     while(nextCheck > DateTime.Now)
@@ -101,9 +111,19 @@ namespace Snake
 
                 if (DidHitWall)
                 {
-                    Console.Title = "YOU DIED! Score: " + snake.Length.ToString();
-                    WaitForMove();
+                    outputProvider.CreateTitle(Message.You_Died + snake.Length.ToString());
+                    SetConsoleToDefault();
+                    outputProvider.WriteLine(Message.SkullArt);
+                    JustWait();
+                    IsGameOver = true;
                 }
+            }
+            if (IsGameOver)
+            {
+                SetConsoleToDefault();
+                outputProvider.CreateTitle(Message.Youre_Done + snake.Length.ToString());
+                outputProvider.Write(Message.SnakeArt);
+                JustWait();
             }
         }
 
@@ -115,6 +135,19 @@ namespace Snake
             {
                 System.Threading.Thread.Sleep(10);
             }
+        }
+
+        public void JustWait()
+        {
+            System.Threading.Thread.Sleep(2000);
+        }
+
+        public void SetConsoleToDefault()
+        {
+            outputProvider.SetForegroundColor(dftForeColor);
+            outputProvider.SetBackgroundColor(dftBackColor);
+            outputProvider.Clear();
+            outputProvider.SetCursorPosition(0, 0);
         }
 
 

@@ -10,6 +10,7 @@ namespace Snake
 
     public class Snake : ISnake 
     {
+        public IOutputProvider outputProvider;
         public int XPosition { get; set; }
         public int YPosition { get; set; }
         public int Length { get; set; }
@@ -26,8 +27,10 @@ namespace Snake
 
         public void DrawSnake()
         {
-            Console.SetCursorPosition(XPosition, YPosition);
-            Console.WriteLine(SnakeHead);
+            outputProvider.SetCursorPosition(XPosition, YPosition);
+            outputProvider.SetBackgroundColor(ConsoleColor.Green);
+            outputProvider.SetForegroundColor(ConsoleColor.Red);
+            outputProvider.WriteLine(SnakeHead);
         }
 
     }
