@@ -16,6 +16,7 @@ namespace Snake
         //set up the height and width of the board
         public int Boardwidth { get; private set; }
         public int Boardheight { get; private set; }
+        public int Padding { get; private set; }
         public char BoardComposition { get; private set; }
 
         // initialize the board with a specific height and width
@@ -23,8 +24,9 @@ namespace Snake
         // Draw the board
         public Board()
         {
-            Boardwidth = Console.WindowWidth;
-            Boardheight = Console.WindowHeight;
+            Padding = 5;
+            Boardwidth = Console.WindowWidth - Padding;
+            Boardheight = Console.WindowHeight - Padding;
             BoardComposition = 'X';
         }
 
@@ -40,7 +42,7 @@ namespace Snake
         public void WriteHorizontalBorders()
 
         {
-
+    
             // loop through the boardwidth to make horizontal pounds
 
             for (int i = 1; i < Boardwidth; i++)
@@ -59,8 +61,6 @@ namespace Snake
 
         }
 
-
-
         //Draw vertical border with pound signs
 
         public void WriteVerticalBorders()
@@ -69,23 +69,17 @@ namespace Snake
 
             // loop through the boardheight to make vertical pounds
 
-            for (int i = 0; i < Boardheight; i++)
+            for (int i = 1; i < Boardheight; i++)
 
             {
 
                 // Set the cursor to each position on the y axis that is less than the boardheight and write a #
-
                 Console.SetCursorPosition(1, i);
-
-                Console.WriteLine(BoardComposition);
+                Console.WriteLine(BoardComposition.ToString());
 
                 // Set the cursor to each position on the x axis that is less than the boardwidth and write a # 
-
-                Console.SetCursorPosition(Boardwidth - 1, i);
-
-                Console.WriteLine(BoardComposition);
-
-
+                Console.SetCursorPosition(Boardwidth, i);
+                Console.WriteLine(BoardComposition.ToString());
 
             }
 
