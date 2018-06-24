@@ -19,6 +19,9 @@ namespace Snake.Interfaces
         // gets board composition icon
         char BoardComposition { get; }
 
+        //gets padding for board setup
+        int Padding { get; }
+
         //draws board
         void DrawBoard();
     }
